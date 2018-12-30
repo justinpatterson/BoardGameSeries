@@ -737,6 +737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6f1caad18cc4346b1d232a080d68e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _boardContainer: {fileID: 0}
   gridElementPrefab: {fileID: 1755181648179268, guid: 5b3dc0aa931654196837d1b33fe3dac4,
     type: 2}
   spriteSize: 1.2
@@ -754,9 +755,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68be4ffe25bf89341b15c11f8bce0148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridElementPrefab: {fileID: 0}
+  gridElementPrefab: {fileID: 1755181648179268, guid: 91155698d4ec9e9408cd095e46fe06f9,
+    type: 2}
   spriteSize: 1.2
-  playerSprites: []
+  playerSprites:
+  - {fileID: 21300000, guid: 35e4a350adc1e4e799fdaf443afe403e, type: 3}
+  - {fileID: 21300000, guid: 55713a35a7bd543a288e52a48e1da862, type: 3}
 --- !u!1 &133096370
 GameObject:
   m_ObjectHideFlags: 0
@@ -2476,7 +2480,6 @@ GameObject:
   m_Component:
   - component: {fileID: 983492327}
   - component: {fileID: 983492326}
-  - component: {fileID: 983492325}
   - component: {fileID: 983492328}
   m_Layer: 0
   m_Name: GameManager
@@ -2485,26 +2488,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &983492325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 983492324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 552413bb91e96ea4ba307bf09df7d2b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  height: 3
-  width: 3
-  winningDirections:
-  - {x: 1, y: 0}
-  - {x: 0, y: 1}
-  - {x: 1, y: 1}
-  - {x: 1, y: -1}
-  winningCount: 3
-  boardViewer: {fileID: 125736443}
 --- !u!114 &983492326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2522,7 +2505,6 @@ MonoBehaviour:
   - {fileID: 291343269}
   - {fileID: 247447232}
   - {fileID: 1020037479}
-  ticTacToeBoardReference: {fileID: 983492325}
   boardModel: {fileID: 983492328}
   sharedUIReference: {fileID: 1137656447}
 --- !u!4 &983492327

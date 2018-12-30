@@ -10,10 +10,10 @@ public class BoardModel : MonoBehaviour {
     public BoardView boardViewer;
 
     //players can own a board entry, but by default -1 means it's empty
-    Dictionary<Vector2, int> _boardState = new Dictionary<Vector2, int>();
-    List<Vector2> _boardTurnHistory = new List<Vector2>();
-    int _lastPlayerNumber;
-    Vector2 _lastPlayerPosition;
+    protected Dictionary<Vector2, int> _boardState = new Dictionary<Vector2, int>();
+    protected List<Vector2> _boardTurnHistory = new List<Vector2>();
+    protected int _lastPlayerNumber;
+    protected Vector2 _lastPlayerPosition;
 
     public virtual void Init()
     {
@@ -44,7 +44,7 @@ public class BoardModel : MonoBehaviour {
         boardViewer.ClearBoardGridElements();
     }
 
-    public bool PlayerClaimsPosition(int inputPlayerNumber, Vector2 inputTargetPosition)
+    public virtual bool PlayerClaimsPosition(int inputPlayerNumber, Vector2 inputTargetPosition)
     {
         if (_boardState.ContainsKey(inputTargetPosition))
         {

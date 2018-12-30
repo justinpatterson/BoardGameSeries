@@ -43,7 +43,7 @@ public class INGAME_GamePhaseBehavior : GamePhaseBehavior
 		switch(currentSubPhase)
 		{
 		case InGameSubPhases.player1_turn:
-//            Debug.Log("Position: " + position);
+            //TODO: should cleanup position using board model (which will select lowest tile if "Connect Four")
 			if ( GameManager.instance.boardModel.PlayerClaimsPosition( 0, position) )
 			{
 				GameManager.instance.boardModel.boardViewer.PlayerClaimedGridAtPosition( 0, position );
