@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class BoardModel_ConnectFour : BoardModel
 {
-    public override bool PlayerClaimsPosition(int inputPlayerNumber, Vector2 inputTargetPosition)
+
+    public override Vector2 GetNextPlayerPosition(Vector2 inputDesiredPosition)
     {
-        Vector2 inputTargetPosition_lowest = inputTargetPosition;
-        bool foundLowest = false;
         for (int heightValue = 0; heightValue < height; heightValue++)
         {
-            if (_boardState.ContainsKey(inputTargetPosition_lowest) && !foundLowest)
+            Vector2 inputTargetPosition_lowest = inputDesiredPosition;
+            inputTargetPosition_lowest.y = heightValue;
+
+            if (_boardState.ContainsKey(inputTargetPosition_lowest))
             {
                 if (_boardState[inputTargetPosition_lowest] == -1)
                 {
-                    foundLowest = true;
                     inputTargetPosition_lowest.y = heightValue;
+                    Debug.Log("LOWEST IS " + inputTargetPosition_lowest);
+                    return inputTargetPosition_lowest;
                 }
             }
-            else
-            {
-            }
         }
-        return base.PlayerClaimsPosition(inputPlayerNumber, inputTargetPosition_lowest);
+        Debug.Log("Unable to find a desired position");
+        return inputDesiredPosition;
     }
 }

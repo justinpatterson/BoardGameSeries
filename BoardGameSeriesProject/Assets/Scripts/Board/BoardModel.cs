@@ -44,6 +44,11 @@ public class BoardModel : MonoBehaviour {
         boardViewer.ClearBoardGridElements();
     }
 
+    public virtual Vector2 GetNextPlayerPosition(Vector2 inputDesiredPosition)
+    {
+        return inputDesiredPosition;
+    }
+
     public virtual bool PlayerClaimsPosition(int inputPlayerNumber, Vector2 inputTargetPosition)
     {
         if (_boardState.ContainsKey(inputTargetPosition))

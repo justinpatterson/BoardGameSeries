@@ -43,10 +43,10 @@ public class INGAME_GamePhaseBehavior : GamePhaseBehavior
 		switch(currentSubPhase)
 		{
 		case InGameSubPhases.player1_turn:
-            //TODO: should cleanup position using board model (which will select lowest tile if "Connect Four")
-			if ( GameManager.instance.boardModel.PlayerClaimsPosition( 0, position) )
+            Vector2 position_clean_p1 = GameManager.instance.boardModel.GetNextPlayerPosition(position);
+            if ( GameManager.instance.boardModel.PlayerClaimsPosition( 0, position_clean_p1) )
 			{
-				GameManager.instance.boardModel.boardViewer.PlayerClaimedGridAtPosition( 0, position );
+				GameManager.instance.boardModel.boardViewer.PlayerClaimedGridAtPosition( 0, position_clean_p1);
                 if (GameManager.instance.boardModel.CheckWinState())
                 {
                     GameManager.instance.TriggerResultsGeneration(0);
@@ -65,10 +65,10 @@ public class INGAME_GamePhaseBehavior : GamePhaseBehavior
                 
 			break;
 		case InGameSubPhases.player2_turn:
-            Debug.Log("Position: " + position);
-            if (GameManager.instance.boardModel.PlayerClaimsPosition(1, position))
+            Vector2 position_clean_p2 = GameManager.instance.boardModel.GetNextPlayerPosition(position);
+            if (GameManager.instance.boardModel.PlayerClaimsPosition(1, position_clean_p2))
             {
-                GameManager.instance.boardModel.boardViewer.PlayerClaimedGridAtPosition(1, position);
+                GameManager.instance.boardModel.boardViewer.PlayerClaimedGridAtPosition(1, position_clean_p2);
                 if (GameManager.instance.boardModel.CheckWinState())
                 {
                     GameManager.instance.TriggerResultsGeneration(1);

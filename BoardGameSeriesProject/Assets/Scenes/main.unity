@@ -2480,7 +2480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 983492327}
   - component: {fileID: 983492326}
-  - component: {fileID: 983492328}
+  - component: {fileID: 983492325}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2488,6 +2488,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &983492325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 983492324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a2dc298392769e429f4c666d6a2b040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  height: 3
+  width: 3
+  winningDirections:
+  - {x: 1, y: 0}
+  - {x: 0, y: 1}
+  - {x: 1, y: 1}
+  - {x: 1, y: -1}
+  winningCount: 3
+  boardViewer: {fileID: 125736444}
 --- !u!114 &983492326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2505,7 +2525,7 @@ MonoBehaviour:
   - {fileID: 291343269}
   - {fileID: 247447232}
   - {fileID: 1020037479}
-  boardModel: {fileID: 983492328}
+  boardModel: {fileID: 983492325}
   sharedUIReference: {fileID: 1137656447}
 --- !u!4 &983492327
 Transform:
@@ -2522,26 +2542,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &983492328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 983492324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33a276cfba274324db9c5acff51bcc48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  height: 3
-  width: 3
-  winningDirections:
-  - {x: 1, y: 0}
-  - {x: 0, y: 1}
-  - {x: 1, y: 1}
-  - {x: 1, y: -1}
-  winningCount: 3
-  boardViewer: {fileID: 125736444}
 --- !u!1 &1016590781
 GameObject:
   m_ObjectHideFlags: 0
