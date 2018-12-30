@@ -36,10 +36,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4165873277940606}
   - component: {fileID: 212557467590209616}
-  - component: {fileID: 114547692975110658}
+  - component: {fileID: 114210593240595044}
   - component: {fileID: 61703539981975276}
   m_Layer: 0
-  m_Name: TicTacToeBoard_GridElement
+  m_Name: BoardElement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,7 +97,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 1.2}
   m_EdgeRadius: 0
---- !u!114 &114547692975110658
+--- !u!114 &114210593240595044
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -105,14 +105,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1755181648179268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767100eec98084545aa87a278fb20ad1, type: 3}
+  m_Script: {fileID: 11500000, guid: bbb5d5238bd620148a5bccf6831fe6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpriteOptions:
-  - {fileID: 21300000, guid: a97b2de80fa6547c9a8f264391e9a41f, type: 3}
-  - {fileID: 21300000, guid: b9728e26f054a41d9b3a7e483e67e284, type: 3}
-  - {fileID: 21300000, guid: 35e4a350adc1e4e799fdaf443afe403e, type: 3}
-  - {fileID: 21300000, guid: 55713a35a7bd543a288e52a48e1da862, type: 3}
   playerSpriteSlot: {fileID: 212168251941554774}
   bgSprite: {fileID: 212557467590209616}
   boardPositionAssignment: {x: 0, y: 0}
@@ -129,6 +124,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -173,6 +169,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:

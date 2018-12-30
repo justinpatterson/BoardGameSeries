@@ -11,12 +11,12 @@ public class INGAME_UIController : UIController
 	{
 		if(GameManager.instance)
 		{
-			if( inputPlayerNumber == -1 || inputPlayerNumber >= GameManager.instance.ticTacToeBoardReference.boardViewer.playerSprites.Length)
+			if( inputPlayerNumber == -1 || inputPlayerNumber >= GameManager.instance.boardModel.boardViewer.playerSprites.Length)
 			{
 			}
 			else 
 			{
-				currentPlayerNumberImage.sprite = GameManager.instance.ticTacToeBoardReference.boardViewer.playerSprites[inputPlayerNumber];
+				currentPlayerNumberImage.sprite = GameManager.instance.boardModel.boardViewer.playerSprites[inputPlayerNumber];
 			}
 		}
 	}

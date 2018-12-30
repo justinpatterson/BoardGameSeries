@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TicTacToeBoard_Element : MonoBehaviour {
-	//public Sprite[] playerSpriteOptions;
 	public SpriteRenderer playerSpriteSlot;
 	public SpriteRenderer bgSprite;
 	public Vector2 boardPositionAssignment;
@@ -15,13 +14,13 @@ public class TicTacToeBoard_Element : MonoBehaviour {
 	{
 		if(GameManager.instance)
 		{
-			if( playerNumber == -1 || playerNumber >= GameManager.instance.ticTacToeBoardReference.boardViewer.playerSprites.Length)
+			if( playerNumber == -1 || playerNumber >= GameManager.instance.boardModel.boardViewer.playerSprites.Length)
 			{
 				playerSpriteSlot.enabled = false;
 			}
 			else 
 			{
-				playerSpriteSlot.sprite = GameManager.instance.ticTacToeBoardReference.boardViewer.playerSprites[playerNumber];
+				playerSpriteSlot.sprite = GameManager.instance.boardModel.boardViewer.playerSprites[playerNumber];
 				_revealPlayerSpriteCoroutine = StartCoroutine( RevealPlayerNumberSpriteCoroutine() );
 				playerSpriteSlot.enabled = true;
 				_currentPlayerNumberOwner = playerNumber;

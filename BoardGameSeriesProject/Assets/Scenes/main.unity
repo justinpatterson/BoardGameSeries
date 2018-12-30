@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 8
+  serializedVersion: 9
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -38,7 +38,8 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37312013, g: 0.3807403, b: 0.35872707, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -54,11 +55,10 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
-    serializedVersion: 9
+    serializedVersion: 10
     m_Resolution: 2
     m_BakeResolution: 40
-    m_TextureWidth: 1024
-    m_TextureHeight: 1024
+    m_AtlasSize: 1024
     m_AO: 0
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
@@ -705,6 +705,7 @@ GameObject:
   m_Component:
   - component: {fileID: 125736442}
   - component: {fileID: 125736443}
+  - component: {fileID: 125736444}
   m_Layer: 0
   m_Name: BoardViewer
   m_TagString: Untagged
@@ -742,6 +743,20 @@ MonoBehaviour:
   playerSprites:
   - {fileID: 21300000, guid: a97b2de80fa6547c9a8f264391e9a41f, type: 3}
   - {fileID: 21300000, guid: b9728e26f054a41d9b3a7e483e67e284, type: 3}
+--- !u!114 &125736444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 125736441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68be4ffe25bf89341b15c11f8bce0148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridElementPrefab: {fileID: 0}
+  spriteSize: 1.2
+  playerSprites: []
 --- !u!1 &133096370
 GameObject:
   m_ObjectHideFlags: 0
@@ -2462,6 +2477,7 @@ GameObject:
   - component: {fileID: 983492327}
   - component: {fileID: 983492326}
   - component: {fileID: 983492325}
+  - component: {fileID: 983492328}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2507,6 +2523,7 @@ MonoBehaviour:
   - {fileID: 247447232}
   - {fileID: 1020037479}
   ticTacToeBoardReference: {fileID: 983492325}
+  boardModel: {fileID: 983492328}
   sharedUIReference: {fileID: 1137656447}
 --- !u!4 &983492327
 Transform:
@@ -2523,6 +2540,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &983492328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 983492324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33a276cfba274324db9c5acff51bcc48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  height: 3
+  width: 3
+  winningDirections:
+  - {x: 1, y: 0}
+  - {x: 0, y: 1}
+  - {x: 1, y: 1}
+  - {x: 1, y: -1}
+  winningCount: 3
+  boardViewer: {fileID: 125736444}
 --- !u!1 &1016590781
 GameObject:
   m_ObjectHideFlags: 0

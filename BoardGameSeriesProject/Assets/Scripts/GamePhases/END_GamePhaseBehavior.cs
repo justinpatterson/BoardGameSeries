@@ -31,7 +31,7 @@ public class END_GamePhaseBehavior : GamePhaseBehavior
 
     public void TriggerBackClick()
     {
-        GameManager.instance.ticTacToeBoardReference.ClearBoard();
+        GameManager.instance.boardModel.ClearBoard();
         GameManager.instance.TriggerPhaseTransition(GameManager.GamePhases.start);
     }
 

@@ -34,7 +34,7 @@ public class END_UIController : UIController {
     {
 		if(inputResults.winningPlayerNumber != -1) 
 		{
-			Sprite winningPlayerSprite = GameManager.instance.ticTacToeBoardReference.boardViewer.playerSprites[ inputResults.winningPlayerNumber ];
+			Sprite winningPlayerSprite = GameManager.instance.boardModel.boardViewer.playerSprites[ inputResults.winningPlayerNumber ];
 			foreach(Image playerIMG in popUp_playerIMGs) playerIMG.sprite = winningPlayerSprite;
 			popUp_Winner_container.SetActive(true);
 		}

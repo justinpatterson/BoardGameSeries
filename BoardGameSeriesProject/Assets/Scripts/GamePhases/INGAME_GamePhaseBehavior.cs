@@ -15,11 +15,11 @@ public class INGAME_GamePhaseBehavior : GamePhaseBehavior
 		{
             Camera.main.transform.position = new Vector3
                 (
-					(GameManager.instance.ticTacToeBoardReference.width * GameManager.instance.ticTacToeBoardReference.boardViewer.spriteSize) / 2,
-					(GameManager.instance.ticTacToeBoardReference.width * GameManager.instance.ticTacToeBoardReference.boardViewer.spriteSize) / 2,
+					(GameManager.instance.boardModel.width * GameManager.instance.boardModel.boardViewer.spriteSize) / 2,
+					(GameManager.instance.boardModel.width * GameManager.instance.boardModel.boardViewer.spriteSize) / 2,
                 Camera.main.transform.position.z
                 );
-			GameManager.instance.ticTacToeBoardReference.Init();
+			GameManager.instance.boardModel.Init();
 			GameManager.OnTileClicked += TriggerTileClick;
             GameManager.OnBackClicked += TriggerBackClick;
 			currentSubPhase = InGameSubPhases.player1_turn;
@@ -44,15 +44,15 @@ public class INGAME_GamePhaseBehavior : GamePhaseBehavior
 		{
 		case InGameSubPhases.player1_turn:
 //            Debug.Log("Position: " + position);
-			if ( GameManager.instance.ticTacToeBoardReference.PlayerClaimsPosition( 0, position) )
+			if ( GameManager.instance.boardModel.PlayerClaimsPosition( 0, position) )
 			{
-				GameManager.instance.ticTacToeBoardReference.boardViewer.PlayerClaimedGridAtPosition( 0, position );
-                if (GameManager.instance.ticTacToeBoardReference.CheckWinState())
+				GameManager.instance.boardModel.boardViewer.PlayerClaimedGridAtPosition( 0, position );
+                if (GameManager.instance.boardModel.CheckWinState())
                 {
                     GameManager.instance.TriggerResultsGeneration(0);
                     GameManager.instance.TriggerPhaseTransition(GameManager.GamePhases.end);
 				}
-				else if(GameManager.instance.ticTacToeBoardReference.GetCurrentTurnCount() >= (Mathf.Pow(GameManager.instance.ticTacToeBoardReference.width,2)))
+				else if(GameManager.instance.boardModel.GetCurrentTurnCount() >= (Mathf.Pow(GameManager.instance.boardModel.width,2)))
 				{
 
 					GameManager.instance.TriggerResultsGeneration(-1);
@@ -66,15 +66,15 @@ public class INGAME_GamePhaseBehavior : GamePhaseBehavior
 			break;
 		case InGameSubPhases.player2_turn:
             Debug.Log("Position: " + position);
-            if (GameManager.instance.ticTacToeBoardReference.PlayerClaimsPosition(1, position))
+            if (GameManager.instance.boardModel.PlayerClaimsPosition(1, position))
             {
-                GameManager.instance.ticTacToeBoardReference.boardViewer.PlayerClaimedGridAtPosition(1, position);
-                if (GameManager.instance.ticTacToeBoardReference.CheckWinState())
+                GameManager.instance.boardModel.boardViewer.PlayerClaimedGridAtPosition(1, position);
+                if (GameManager.instance.boardModel.CheckWinState())
                 {
                     GameManager.instance.TriggerResultsGeneration(1);
                     GameManager.instance.TriggerPhaseTransition(GameManager.GamePhases.end);
                 }
-				else if(GameManager.instance.ticTacToeBoardReference.GetCurrentTurnCount() >= (Mathf.Pow(GameManager.instance.ticTacToeBoardReference.width,2)))
+				else if(GameManager.instance.boardModel.GetCurrentTurnCount() >= (Mathf.Pow(GameManager.instance.boardModel.width,2)))
 				{
 					GameManager.instance.TriggerResultsGeneration(-1);
 					GameManager.instance.TriggerPhaseTransition(GameManager.GamePhases.end);
@@ -97,7 +97,7 @@ public class INGAME_GamePhaseBehavior : GamePhaseBehavior
 
     public void TriggerBackClick()
     {
-        GameManager.instance.ticTacToeBoardReference.ClearBoard();
+        GameManager.instance.boardModel.ClearBoard();
         GameManager.instance.TriggerPhaseTransition(GameManager.GamePhases.start);
     }
 }

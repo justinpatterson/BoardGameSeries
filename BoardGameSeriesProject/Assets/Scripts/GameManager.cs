@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-[RequireComponent(typeof(TicTacToeBoardController))]
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;
@@ -10,7 +8,9 @@ public class GameManager : MonoBehaviour {
     public enum GamePhases { init, start, inGame, end, restart }
     public GamePhases currentPhase = GamePhases.init;
     public GamePhaseBehavior[] gamePhaseBehaviors;
-    public TicTacToeBoardController ticTacToeBoardReference;
+    
+    public BoardModel boardModel;
+
     public SHARED_UIController sharedUIReference;
 
     GamePhaseBehavior _currentPhaseBehavior;
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
-        if (!ticTacToeBoardReference) ticTacToeBoardReference = GetComponent<TicTacToeBoardController>();
+        if (!boardModel) boardModel = GetComponent<BoardModel>();
         TriggerPhaseTransition(GamePhases.init);
         TriggerPhaseTransition(GamePhases.start);
     }
@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour {
     public void TriggerResultsGeneration(int inputWinningPlayerNumber)
     {
         Results r = new Results();
-        r.roundCount = ticTacToeBoardReference.GetCurrentRoundCount();
+        r.roundCount = boardModel.GetCurrentRoundCount();
         r.winningPlayerNumber = inputWinningPlayerNumber;
         _lastResults = r;
     }
@@ -90,6 +90,11 @@ public class GameManager : MonoBehaviour {
 
     #region DELEGATES
     public void ReportTicTacToeTilePressed(Vector2 position)
+    {
+        if (OnTileClicked != null)
+            OnTileClicked(position);
+    }
+    public void ReportTilePressed(Vector2 position)
     {
         if (OnTileClicked != null)
             OnTileClicked(position);

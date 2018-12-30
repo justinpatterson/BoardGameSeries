@@ -82,22 +82,6 @@ public class TicTacToeBoardController : MonoBehaviour {
     bool CheckWinState_AllPositions()
     {
         bool win = false;
-		/* this is the most immediate way to check win state, but technically only first column and row should be needed with tictactoe rules
-        for (int x = 0; x < width; x++)
-        {
-            for (int y = 0; y < height; y++)
-            {
-                Vector2 checkposition = new Vector2(x, y);
-                if (_boardState.ContainsKey(checkposition))
-                {
-                    if (_boardState[checkposition] == _lastPlayerNumber)
-                    {
-                        if (win == false) win = CheckWinState_AtPosition(checkposition, _lastPlayerNumber);
-                    }
-                }
-            }
-        }
-        */
 		for (int x = 0; x < width; x++)
 		{
 			Vector2 checkposition = new Vector2(x, 0);
