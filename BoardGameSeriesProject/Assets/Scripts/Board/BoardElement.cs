@@ -30,18 +30,18 @@ public class BoardElement : MonoBehaviour {
     }
     public void AssignPosition(Vector2 inputPosition) { boardPositionAssignment = inputPosition; }
 
-    void OnMouseDown()
+    protected virtual void OnMouseDown()
     {
         if (GameManager.instance) GameManager.instance.ReportTilePressed(boardPositionAssignment);
     }
-    void OnMouseEnter()
+    protected virtual void OnMouseEnter()
     {
         if (_currentPlayerNumberOwner == -1)
         {
             bgSprite.color = Color.white * 0.8f;
         }
     }
-    void OnMouseExit()
+    protected virtual void OnMouseExit()
     {
         if (_currentPlayerNumberOwner == -1)
         {
@@ -54,7 +54,7 @@ public class BoardElement : MonoBehaviour {
         if (_revealPlayerSpriteCoroutine != null) StopCoroutine(_revealPlayerSpriteCoroutine);
     }
 
-    IEnumerator RevealPlayerNumberSpriteCoroutine()
+    protected virtual IEnumerator RevealPlayerNumberSpriteCoroutine()
     {
         playerSpriteSlot.transform.localScale = Vector3.zero;
         playerSpriteSlot.transform.localScale = Vector3.zero;
