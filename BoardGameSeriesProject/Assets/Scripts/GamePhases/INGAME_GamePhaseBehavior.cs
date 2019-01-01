@@ -15,7 +15,7 @@ public class INGAME_GamePhaseBehavior : GamePhaseBehavior
 		{
             Camera.main.transform.position = new Vector3
                 (
-					(GameManager.instance.boardModel.width * GameManager.instance.boardViewer.spriteSize) / 2,
+					(GameManager.instance.boardViewer.spriteSize) * (GameManager.instance.boardModel.width/2),
 					(GameManager.instance.boardModel.width * GameManager.instance.boardViewer.spriteSize) / 2,
                 Camera.main.transform.position.z
                 );
