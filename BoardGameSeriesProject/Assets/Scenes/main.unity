@@ -1637,14 +1637,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a2dc298392769e429f4c666d6a2b040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  height: 3
-  width: 3
+  height: 6
+  width: 7
   winningDirections:
   - {x: 1, y: 0}
   - {x: 0, y: 1}
   - {x: 1, y: 1}
   - {x: 1, y: -1}
-  winningCount: 3
+  winningCount: 4
 --- !u!1 &372963368
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class BoardModel_ConnectFour : BoardModel
                 if (_boardState[inputTargetPosition_lowest] == -1)
                 {
                     inputTargetPosition_lowest.y = heightValue;
-                    Debug.Log("LOWEST IS " + inputTargetPosition_lowest);
+                    //Debug.Log("LOWEST IS " + inputTargetPosition_lowest);
                     return inputTargetPosition_lowest;
                 }
             }

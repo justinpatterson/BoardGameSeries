@@ -17,9 +17,11 @@ public class BoardModel : MonoBehaviour {
     public virtual void Init()
     {
         _boardTurnHistory.Clear();
+		/*
         width = PlayerPrefs.GetInt("GridSize");
         height = PlayerPrefs.GetInt("GridSize");
         winningCount = PlayerPrefs.GetInt("GridSize");
+        */
         GenerateBoard(width, height);
 		GameManager.instance.boardViewer.GenerateBoardGridElements(_boardState);
     }
@@ -107,8 +109,8 @@ public class BoardModel : MonoBehaviour {
         int maxWinCount = 0;
         foreach (Vector2 direction in winningDirections)
         {
-            int winCount = 1;
-            for (int i = 1; i < PlayerPrefs.GetInt("GridSize"); i++)
+			int currentWinCount = 1;
+			for (int i = 1; i < winningCount; i++)
             {
                 string output = "Checking Space:" + direction + "...";
                 Vector2 targetPosition = new Vector2();
@@ -125,15 +127,16 @@ public class BoardModel : MonoBehaviour {
 
                     if (_boardState[targetPosition] == inputPlayerNumber)
                     {
-                        Debug.Log(output);
-                        winCount++;
-                        if (winCount > maxWinCount)
+                        currentWinCount++;
+                        if (currentWinCount > maxWinCount)
                         {
-                            maxWinCount = winCount;
+                            maxWinCount = currentWinCount;
                         }
                     }
 
                 }
+
+				Debug.Log(output);
             }
         }
         return (maxWinCount >= winningCount);

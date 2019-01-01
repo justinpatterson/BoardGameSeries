@@ -13,12 +13,16 @@ public class INGAME_GamePhaseBehavior : GamePhaseBehavior
 
 		if (GameManager.instance)
 		{
-            Camera.main.transform.position = new Vector3
-                (
+			Camera.main.transform.position = new Vector3
+				(
 					(GameManager.instance.boardViewer.spriteSize) * (GameManager.instance.boardModel.width/2),
-					(GameManager.instance.boardModel.width * GameManager.instance.boardViewer.spriteSize) / 2,
-                Camera.main.transform.position.z
-                );
+					(GameManager.instance.boardModel.height * GameManager.instance.boardViewer.spriteSize) / 2,
+					Camera.main.transform.position.z
+				);
+			Camera.main.orthographicSize =GameManager.instance.boardViewer.spriteSize *
+				((GameManager.instance.boardModel.width>GameManager.instance.boardModel.height) ? 
+					GameManager.instance.boardModel.width + 1 
+					: GameManager.instance.boardModel.height + 1);
 			GameManager.instance.boardModel.Init();
 			GameManager.OnTileClicked += TriggerTileClick;
             GameManager.OnBackClicked += TriggerBackClick;
