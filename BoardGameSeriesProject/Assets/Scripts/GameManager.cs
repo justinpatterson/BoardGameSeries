@@ -4,13 +4,25 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;
-
     public enum GamePhases { init, start, inGame, end, restart }
     public GamePhases currentPhase = GamePhases.init;
     public GamePhaseBehavior[] gamePhaseBehaviors;
     
-    public BoardModel boardModel;
-	public BoardView boardViewer;
+
+	public BoardInfo[] boards;
+	int _selectedBoard = 0;
+
+	public BoardModel boardModel
+	{
+		get { return boards[_selectedBoard].boardModel; }
+		//set { boardModel = value; }
+	}
+	public BoardView boardViewer 
+	{
+		get {return boards[_selectedBoard].boardView;}
+		//set {boardViewer = value;}
+			
+	}
 
     public SHARED_UIController sharedUIReference;
 
@@ -41,7 +53,7 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
-        if (!boardModel) boardModel = GetComponent<BoardModel>();
+        //if (!boardModel) boardModel = GetComponent<BoardModel>();
         TriggerPhaseTransition(GamePhases.init);
         TriggerPhaseTransition(GamePhases.start);
     }
@@ -74,6 +86,12 @@ public class GameManager : MonoBehaviour {
     {
         TriggerPhaseTransition(GamePhases.inGame);
     }
+
+	public void ReportBoardOptionPressed(int inputOption)
+	{
+		_selectedBoard = Mathf.Clamp(inputOption, 0, boards.Length);
+
+	}
     
 
 
