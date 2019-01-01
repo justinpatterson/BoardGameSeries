@@ -15,8 +15,8 @@ public class INGAME_GamePhaseBehavior : GamePhaseBehavior
 		{
             Camera.main.transform.position = new Vector3
                 (
-					(GameManager.instance.boardModel.width * GameManager.instance.boardModel.boardViewer.spriteSize) / 2,
-					(GameManager.instance.boardModel.width * GameManager.instance.boardModel.boardViewer.spriteSize) / 2,
+					(GameManager.instance.boardModel.width * GameManager.instance.boardViewer.spriteSize) / 2,
+					(GameManager.instance.boardModel.width * GameManager.instance.boardViewer.spriteSize) / 2,
                 Camera.main.transform.position.z
                 );
 			GameManager.instance.boardModel.Init();
@@ -46,7 +46,7 @@ public class INGAME_GamePhaseBehavior : GamePhaseBehavior
             Vector2 position_clean_p1 = GameManager.instance.boardModel.GetNextPlayerPosition(position);
             if ( GameManager.instance.boardModel.PlayerClaimsPosition( 0, position_clean_p1) )
 			{
-				GameManager.instance.boardModel.boardViewer.PlayerClaimedGridAtPosition( 0, position_clean_p1);
+				GameManager.instance.boardViewer.PlayerClaimedGridAtPosition( 0, position_clean_p1);
                 if (GameManager.instance.boardModel.CheckWinState())
                 {
                     GameManager.instance.TriggerResultsGeneration(0);
@@ -68,7 +68,7 @@ public class INGAME_GamePhaseBehavior : GamePhaseBehavior
             Vector2 position_clean_p2 = GameManager.instance.boardModel.GetNextPlayerPosition(position);
             if (GameManager.instance.boardModel.PlayerClaimsPosition(1, position_clean_p2))
             {
-                GameManager.instance.boardModel.boardViewer.PlayerClaimedGridAtPosition(1, position_clean_p2);
+                GameManager.instance.boardViewer.PlayerClaimedGridAtPosition(1, position_clean_p2);
                 if (GameManager.instance.boardModel.CheckWinState())
                 {
                     GameManager.instance.TriggerResultsGeneration(1);

@@ -8,7 +8,7 @@ public class BoardElement_ConnectFour : BoardElement {
 
         playerSpriteSlot.transform.localScale = Vector3.zero;
         playerSpriteSlot.transform.localScale = Vector3.zero;
-        float fallHeight = GameManager.instance.boardModel.height * GameManager.instance.boardModel.boardViewer.spriteSize;
+        float fallHeight = GameManager.instance.boardModel.height * GameManager.instance.boardViewer.spriteSize;
 
         float startTime = Time.unscaledTime;
         float targetDuration = 0.2f;

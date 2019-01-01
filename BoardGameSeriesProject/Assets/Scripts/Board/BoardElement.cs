@@ -14,13 +14,13 @@ public class BoardElement : MonoBehaviour {
     {
         if (GameManager.instance)
         {
-            if (playerNumber == -1 || playerNumber >= GameManager.instance.boardModel.boardViewer.playerSprites.Length)
+            if (playerNumber == -1 || playerNumber >= GameManager.instance.boardViewer.playerSprites.Length)
             {
                 playerSpriteSlot.enabled = false;
             }
             else
             {
-                playerSpriteSlot.sprite = GameManager.instance.boardModel.boardViewer.playerSprites[playerNumber];
+                playerSpriteSlot.sprite = GameManager.instance.boardViewer.playerSprites[playerNumber];
                 _revealPlayerSpriteCoroutine = StartCoroutine(RevealPlayerNumberSpriteCoroutine());
                 playerSpriteSlot.enabled = true;
                 _currentPlayerNumberOwner = playerNumber;

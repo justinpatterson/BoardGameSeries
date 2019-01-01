@@ -7,7 +7,6 @@ public class BoardModel : MonoBehaviour {
     public int width = 3;
     public Vector2[] winningDirections;
     public int winningCount = 3;
-    public BoardView boardViewer;
 
     //players can own a board entry, but by default -1 means it's empty
     protected Dictionary<Vector2, int> _boardState = new Dictionary<Vector2, int>();
@@ -22,7 +21,7 @@ public class BoardModel : MonoBehaviour {
         height = PlayerPrefs.GetInt("GridSize");
         winningCount = PlayerPrefs.GetInt("GridSize");
         GenerateBoard(width, height);
-        if (boardViewer) boardViewer.GenerateBoardGridElements(_boardState);
+		GameManager.instance.boardViewer.GenerateBoardGridElements(_boardState);
     }
 
     void GenerateBoard(int w, int h)
@@ -41,7 +40,7 @@ public class BoardModel : MonoBehaviour {
     public void ClearBoard()
     {
         _boardState.Clear();
-        boardViewer.ClearBoardGridElements();
+        GameManager.instance.boardViewer.ClearBoardGridElements();
     }
 
     public virtual Vector2 GetNextPlayerPosition(Vector2 inputDesiredPosition)

@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
     public GamePhaseBehavior[] gamePhaseBehaviors;
     
     public BoardModel boardModel;
+	public BoardView boardViewer;
 
     public SHARED_UIController sharedUIReference;
 
