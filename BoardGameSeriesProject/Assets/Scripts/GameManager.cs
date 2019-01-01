@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Advertisements;
+
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;
@@ -56,6 +58,7 @@ public class GameManager : MonoBehaviour {
         //if (!boardModel) boardModel = GetComponent<BoardModel>();
         TriggerPhaseTransition(GamePhases.init);
         TriggerPhaseTransition(GamePhases.start);
+		Advertisement.Initialize("2986613",true);
     }
 
     void Update()
