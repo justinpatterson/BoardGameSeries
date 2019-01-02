@@ -840,6 +840,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridElementPrefab: {fileID: 1755181648179268, guid: 91155698d4ec9e9408cd095e46fe06f9,
     type: 3}
+  gridTrailPrefab: {fileID: 1899002055629932283, guid: 096a3f2bb63ba451f82149a9ea480d71,
+    type: 3}
   spriteSize: 1.2
   playerSprites:
   - {fileID: 21300000, guid: 35e4a350adc1e4e799fdaf443afe403e, type: 3}
@@ -3249,7 +3251,7 @@ MonoBehaviour:
   sharedUI:
     showTopBannerBG: 1
     backButton: 0
-    overlay: 1
+    overlay: 0
 --- !u!1 &1063045239
 GameObject:
   m_ObjectHideFlags: 0
@@ -5509,10 +5511,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridElementPrefab: {fileID: 1755181648179268, guid: a6f38c637305e6e4da90d32512d2df2a,
     type: 3}
+  gridTrailPrefab: {fileID: 1899002055629932283, guid: 096a3f2bb63ba451f82149a9ea480d71,
+    type: 3}
   spriteSize: 1.2
   playerSprites:
-  - {fileID: 21300000, guid: 35e4a350adc1e4e799fdaf443afe403e, type: 3}
-  - {fileID: 21300000, guid: 55713a35a7bd543a288e52a48e1da862, type: 3}
+  - {fileID: 21300000, guid: 5c804823e13564f49b2cf3a18189739a, type: 3}
+  - {fileID: 21300000, guid: 36b5d249157884f3ba4ab1790e6d8212, type: 3}
 --- !u!1 &1904697911
 GameObject:
   m_ObjectHideFlags: 0

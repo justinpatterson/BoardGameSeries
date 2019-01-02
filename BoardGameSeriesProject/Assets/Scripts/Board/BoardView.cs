@@ -5,6 +5,7 @@ using UnityEngine;
 public class BoardView : MonoBehaviour {
     GameObject _boardContainer;
     public GameObject gridElementPrefab;
+	public GameObject gridTrailPrefab;
     Dictionary<Vector2, BoardElement> _boardElements = new Dictionary<Vector2, BoardElement>();
     public float spriteSize = 1.2f;
     public Sprite[] playerSprites;
@@ -45,4 +46,16 @@ public class BoardView : MonoBehaviour {
         if (_boardElements.ContainsKey(inputPosition))
             _boardElements[inputPosition].AssignPlayerSlot(inputPlayerNubmer);
     }
+
+	public virtual void PlayerWinFX(Vector2 start, Vector2 finish, float duration)
+	{
+		GameObject fxInstance = Instantiate(gridTrailPrefab, start, Quaternion.identity);
+		BoardViewFXTrail fxInstanceComponent = fxInstance.GetComponent<BoardViewFXTrail>();
+		if(fxInstanceComponent) 
+		{
+			fxInstanceComponent.TriggerTrailFX(start,finish,duration);
+		}
+	}
+
+
 }

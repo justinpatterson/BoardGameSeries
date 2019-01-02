@@ -7,6 +7,7 @@ public class END_GamePhaseBehavior : GamePhaseBehavior
 {
     public override void StartPhase()
     {
+		/*
         if (GameManager.instance && phaseUI)
         {
             if (phaseUI is END_UIController)
@@ -17,10 +18,41 @@ public class END_GamePhaseBehavior : GamePhaseBehavior
 
             GameManager.OnBackClicked += TriggerBackClick;
             GameManager.OnRestartClicked += TriggerRestartClicked;
-
         }
         base.StartPhase();
+        */
+		StartCoroutine(StartPhaseCoroutine());
     }
+
+	IEnumerator StartPhaseCoroutine()
+	{
+		WinVectorData w = GameManager.instance.boardModel.GetWinVectorData();
+		if(w.isValid)
+		{
+			GameManager.instance.boardViewer.PlayerWinFX(
+				w.start,
+				w.end,
+				0.6f
+			);
+			yield return new WaitForSeconds(1f);	
+		}
+
+		yield return null;
+
+		if (GameManager.instance && phaseUI)
+		{
+			if (phaseUI is END_UIController)
+			{
+				END_UIController phaseUI_cast_end = (END_UIController) phaseUI;
+				phaseUI_cast_end.ReportResults(GameManager.instance.GetResults());
+			}
+
+			GameManager.OnBackClicked += TriggerBackClick;
+			GameManager.OnRestartClicked += TriggerRestartClicked;
+		}
+		base.StartPhase();
+	}
+
     public override void EndPhase()
     {
         base.EndPhase();

@@ -13,6 +13,7 @@ public class BoardModel : MonoBehaviour {
     protected List<Vector2> _boardTurnHistory = new List<Vector2>();
     protected int _lastPlayerNumber;
     protected Vector2 _lastPlayerPosition;
+	protected WinVectorData _lastWinVectorData;
 
     public virtual void Init()
     {
@@ -77,7 +78,7 @@ public class BoardModel : MonoBehaviour {
         }
     }
 
-    public bool CheckWinState()
+	public bool CheckWinState()
     {
         if (_lastPlayerNumber == -1)
         {
@@ -88,6 +89,8 @@ public class BoardModel : MonoBehaviour {
     bool CheckWinState_AllPositions()
     {
         bool win = false;
+		_lastWinVectorData = new WinVectorData();
+
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -97,11 +100,15 @@ public class BoardModel : MonoBehaviour {
                 {
                     if (_boardState[checkposition] == _lastPlayerNumber)
                     {
-                        if (win == false) win = CheckWinState_AtPosition(checkposition, _lastPlayerNumber);
+						if (win == false) 
+						{
+							win = CheckWinState_AtPosition(checkposition, _lastPlayerNumber);
+						}
                     }
                 }
             }
         }
+
         return win;
     }
     bool CheckWinState_AtPosition(Vector2 inputPosition, int inputPlayerNumber)
@@ -131,6 +138,10 @@ public class BoardModel : MonoBehaviour {
                         if (currentWinCount > maxWinCount)
                         {
                             maxWinCount = currentWinCount;
+							if((maxWinCount >= winningCount))
+							{
+								_lastWinVectorData = new WinVectorData(inputPosition * GameManager.instance.boardViewer.spriteSize, targetPosition * GameManager.instance.boardViewer.spriteSize);
+							}
                         }
                     }
 
@@ -153,4 +164,9 @@ public class BoardModel : MonoBehaviour {
     {
         return _boardTurnHistory.Count;
     }
+	public WinVectorData GetWinVectorData()
+	{
+		return _lastWinVectorData;
+	}
 }
+
