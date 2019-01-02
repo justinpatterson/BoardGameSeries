@@ -136,7 +136,7 @@ public class BoardModel : MonoBehaviour {
 
                 }
 
-				Debug.Log(output);
+				//Debug.Log(output);
             }
         }
         return (maxWinCount >= winningCount);

@@ -17,13 +17,15 @@ public class END_GamePhaseBehavior : GamePhaseBehavior
 
             GameManager.OnBackClicked += TriggerBackClick;
             GameManager.OnRestartClicked += TriggerRestartClicked;
+
         }
         base.StartPhase();
     }
     public override void EndPhase()
     {
         base.EndPhase();
-        GameManager.OnBackClicked -= TriggerBackClick;
+		GameManager.OnBackClicked -= TriggerBackClick;
+
     }
     public override void UpdatePhase()
     {
@@ -39,31 +41,17 @@ public class END_GamePhaseBehavior : GamePhaseBehavior
     public void TriggerRestartClicked()
     {
         GameManager.instance.TriggerPhaseTransition(GameManager.GamePhases.inGame);
-		ShowRewardedAd();
-    }
-	void ShowRewardedAd () {
-		if (Advertisement.IsReady("rewardedVideo"))
-		{
-			var options = new ShowOptions { resultCallback = HandleShowResult };
-			Advertisement.Show("rewardedVideo", options);
-		}
-		/*
-		AdvertisementShowAdCallbacks options = new ShowAdCallbacks ();
-		options.finishCallback = HandleShowResult;
-		ShowAdPlacementContent ad = Monetization.GetPlacementContent (placementId) as ShowAdPlacementContent;
-		ad.Show (options);
-		*/
-	}
 
-	private void HandleShowResult(ShowResult result)
+		AdController.OnRewardAdCompleted += TriggerOnRewardAdCompleted;
+		GameManager.instance.adController.ShowRewardedAd();
+    }
+
+	public void TriggerOnRewardAdCompleted(ShowResult result)
 	{
 		switch (result)
 		{
 		case ShowResult.Finished:
 			Debug.Log("The ad was successfully shown.");
-			//
-			// YOUR CODE TO REWARD THE GAMER
-			// Give coins etc.
 			break;
 		case ShowResult.Skipped:
 			Debug.Log("The ad was skipped before reaching the end.");
@@ -72,5 +60,7 @@ public class END_GamePhaseBehavior : GamePhaseBehavior
 			Debug.LogError("The ad failed to be shown.");
 			break;
 		}
+		AdController.OnRewardAdCompleted -= TriggerOnRewardAdCompleted;
 	}
+
 }

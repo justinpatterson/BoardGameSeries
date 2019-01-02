@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Advertisements;
 
 public class GameManager : MonoBehaviour {
 
@@ -9,7 +8,7 @@ public class GameManager : MonoBehaviour {
     public enum GamePhases { init, start, inGame, end, restart }
     public GamePhases currentPhase = GamePhases.init;
     public GamePhaseBehavior[] gamePhaseBehaviors;
-    
+	public AdController adController;
 
 	public BoardInfo[] boards;
 	int _selectedBoard = 0;
@@ -58,7 +57,7 @@ public class GameManager : MonoBehaviour {
         //if (!boardModel) boardModel = GetComponent<BoardModel>();
         TriggerPhaseTransition(GamePhases.init);
         TriggerPhaseTransition(GamePhases.start);
-		Advertisement.Initialize("2986613",true);
+		adController.InitializeAds();
     }
 
     void Update()
