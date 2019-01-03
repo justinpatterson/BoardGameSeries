@@ -5483,8 +5483,8 @@ MonoBehaviour:
     type: 3}
   spriteSize: 1.2
   playerSprites:
-  - {fileID: 21300000, guid: 5c804823e13564f49b2cf3a18189739a, type: 3}
-  - {fileID: 21300000, guid: 36b5d249157884f3ba4ab1790e6d8212, type: 3}
+  - {fileID: 21300000, guid: 988e0d3e1f42e4961991d39063dedffb, type: 3}
+  - {fileID: 21300000, guid: 46a95f4f5b54046579e0c86ee38816c2, type: 3}
 --- !u!1 &1904697911
 GameObject:
   m_ObjectHideFlags: 0
