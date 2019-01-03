@@ -67,15 +67,15 @@ public class END_GamePhaseBehavior : GamePhaseBehavior
     public void TriggerBackClick()
     {
         GameManager.instance.boardModel.ClearBoard();
-        GameManager.instance.TriggerPhaseTransition(GameManager.GamePhases.start);
+		GameManager.instance.TriggerPhaseTransition(GameManager.GamePhases.start);
+		AdController.OnRewardAdCompleted += TriggerOnRewardAdCompleted;
+		GameManager.instance.adController.ShowRewardedAd();
     }
 
     public void TriggerRestartClicked()
     {
         GameManager.instance.TriggerPhaseTransition(GameManager.GamePhases.inGame);
 
-		AdController.OnRewardAdCompleted += TriggerOnRewardAdCompleted;
-		GameManager.instance.adController.ShowRewardedAd();
     }
 
 	public void TriggerOnRewardAdCompleted(ShowResult result)
