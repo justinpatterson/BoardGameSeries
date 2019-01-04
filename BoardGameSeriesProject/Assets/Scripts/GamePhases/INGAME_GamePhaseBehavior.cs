@@ -47,48 +47,35 @@ public class INGAME_GamePhaseBehavior : GamePhaseBehavior
 		switch(currentSubPhase)
 		{
 		case InGameSubPhases.player1_turn:
-            Vector2 position_clean_p1 = GameManager.instance.boardModel.GetNextPlayerPosition(position);
-            if ( GameManager.instance.boardModel.PlayerClaimsPosition( 0, position_clean_p1) )
-			{
-				GameManager.instance.boardViewer.PlayerClaimedGridAtPosition( 0, position_clean_p1);
-                if (GameManager.instance.boardModel.CheckWinState())
-                {
-                    GameManager.instance.TriggerResultsGeneration(0);
-                    GameManager.instance.TriggerPhaseTransition(GameManager.GamePhases.end);
-				}
-				else if(GameManager.instance.boardModel.GetCurrentTurnCount() >= (Mathf.Pow(GameManager.instance.boardModel.width,2)))
-				{
-
-					GameManager.instance.TriggerResultsGeneration(-1);
-					GameManager.instance.TriggerPhaseTransition(GameManager.GamePhases.end);
-				}
-				currentSubPhase = InGameSubPhases.player2_turn;
-				ReportCurrentPlayerTurn(1,true);
-
-            }
-                
+			PlayerClaimTileBehavior(0,position);
 			break;
 		case InGameSubPhases.player2_turn:
-            Vector2 position_clean_p2 = GameManager.instance.boardModel.GetNextPlayerPosition(position);
-            if (GameManager.instance.boardModel.PlayerClaimsPosition(1, position_clean_p2))
-            {
-                GameManager.instance.boardViewer.PlayerClaimedGridAtPosition(1, position_clean_p2);
-                if (GameManager.instance.boardModel.CheckWinState())
-                {
-                    GameManager.instance.TriggerResultsGeneration(1);
-                    GameManager.instance.TriggerPhaseTransition(GameManager.GamePhases.end);
-                }
-				else if(GameManager.instance.boardModel.GetCurrentTurnCount() >= (Mathf.Pow(GameManager.instance.boardModel.width,2)))
-				{
-					GameManager.instance.TriggerResultsGeneration(-1);
-					GameManager.instance.TriggerPhaseTransition(GameManager.GamePhases.end);
-				}
-				currentSubPhase = InGameSubPhases.player1_turn;
-				ReportCurrentPlayerTurn(0,true);
-            }
+			PlayerClaimTileBehavior(1,position);
             break;
 		}
 	}
+
+	void PlayerClaimTileBehavior(int inputPlayerNumber, Vector2 position)
+	{
+		Vector2 position_clean = GameManager.instance.boardModel.GetNextPlayerPosition(position);
+		if (GameManager.instance.boardModel.PlayerClaimsPosition(inputPlayerNumber, position_clean))
+		{
+			GameManager.instance.boardViewer.PlayerClaimedGridAtPosition(inputPlayerNumber, position_clean);
+			if (GameManager.instance.boardModel.CheckWinState())
+			{
+				GameManager.instance.TriggerResultsGeneration(inputPlayerNumber);
+				GameManager.instance.TriggerPhaseTransition(GameManager.GamePhases.end);
+			}
+			else if(GameManager.instance.boardModel.GetCurrentTurnCount() >= (Mathf.Pow(GameManager.instance.boardModel.width,2)))
+			{
+				GameManager.instance.TriggerResultsGeneration(-1);
+				GameManager.instance.TriggerPhaseTransition(GameManager.GamePhases.end);
+			}
+			int nextPlayer = ( (inputPlayerNumber + 1) % 2);
+			ReportCurrentPlayerTurn(nextPlayer,true);
+		}
+	}
+
 	void ReportCurrentPlayerTurn(int inputPlayerNumber, bool inputUseAnim)
 	{
 		if(phaseUI is INGAME_UIController)
@@ -96,6 +83,9 @@ public class INGAME_GamePhaseBehavior : GamePhaseBehavior
 			INGAME_UIController phaseUI_cast = (INGAME_UIController) phaseUI;
 			phaseUI_cast.TriggerPlayerNumberImageUpdate(inputPlayerNumber, inputUseAnim);
 		}
+
+		if(inputPlayerNumber == 0) currentSubPhase = InGameSubPhases.player1_turn;
+		else if(inputPlayerNumber == 1) currentSubPhase = InGameSubPhases.player2_turn;
 	}
 
     public void TriggerBackClick()
