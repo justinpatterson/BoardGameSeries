@@ -8,6 +8,7 @@ public class START_UIController : UIController {
     public Button startGameButton;
 
 	public Toggle Toggle_3x3, Toggle_4x4;
+	public InputField inputName_p1, inputName_p2;
 
 	public Transform boardModeContainer;
 
@@ -25,6 +26,13 @@ public class START_UIController : UIController {
 		Toggle_4x4.onValueChanged.RemoveAllListeners();
 		Toggle_4x4.onValueChanged.AddListener( delegate { ReportGridSizeToggleOptionClicked(); } );
 
+		inputName_p1.text = PlayerPrefs.GetString( PlayerDataController.PlayerDataTypes.p1_name.ToString() );
+		inputName_p2.text = PlayerPrefs.GetString( PlayerDataController.PlayerDataTypes.p2_name.ToString() );
+
+		inputName_p1.onEndEdit.RemoveAllListeners();
+		inputName_p1.onEndEdit.AddListener( delegate { ReportPlayerNameFieldChange(0); });
+		inputName_p2.onEndEdit.RemoveAllListeners();
+		inputName_p2.onEndEdit.AddListener( delegate { ReportPlayerNameFieldChange(1); });
 
 		int childIndex = 0;
 		foreach(Transform child in boardModeContainer)
@@ -73,7 +81,6 @@ public class START_UIController : UIController {
 	public void OnPointerDownBoardOptionDelegate(PointerEventData data, int inputChildIndex)
 	{
 		GameManager.instance.ReportBoardOptionPressed(inputChildIndex);
-		Debug.Log("Child selected" + inputChildIndex);
 		SetBoardModeSelection(inputChildIndex);
 	}
 
@@ -89,6 +96,18 @@ public class START_UIController : UIController {
 				im.color = Color.white * ((childIndex==inputChildIndex)? 1f:.9f);
 			}
 			childIndex++;
+		}
+	}
+
+	void ReportPlayerNameFieldChange( int inputPlayer )
+	{
+		if(inputPlayer == 0)
+		{
+			GameManager.instance.playerDataController.SetPlayerDataValue( PlayerDataController.PlayerDataTypes.p1_name, inputName_p1.text );
+		}
+		else if(inputPlayer == 1)
+		{
+			GameManager.instance.playerDataController.SetPlayerDataValue( PlayerDataController.PlayerDataTypes.p2_name, inputName_p2.text );
 		}
 	}
 }

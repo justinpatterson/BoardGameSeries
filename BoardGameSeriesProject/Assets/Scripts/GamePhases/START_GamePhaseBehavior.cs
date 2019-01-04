@@ -7,6 +7,7 @@ public class START_GamePhaseBehavior : GamePhaseBehavior {
     public override void StartPhase()
     {
         base.StartPhase();
+		GameManager.instance.ReportBoardOptionPressed(0);
     }
     public override void UpdatePhase()
     {

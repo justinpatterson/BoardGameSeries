@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
     public GamePhases currentPhase = GamePhases.init;
     public GamePhaseBehavior[] gamePhaseBehaviors;
 	public AdController adController;
+	public PlayerDataController playerDataController;
 
 	public BoardInfo[] boards;
 	int _selectedBoard = 0;

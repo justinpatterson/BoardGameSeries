@@ -21,13 +21,13 @@ public class INGAME_GamePhaseBehavior : GamePhaseBehavior
 				);
 			Camera.main.orthographicSize =GameManager.instance.boardViewer.spriteSize *
 				((GameManager.instance.boardModel.width>GameManager.instance.boardModel.height) ? 
-					GameManager.instance.boardModel.width + 1 
-					: GameManager.instance.boardModel.height + 1);
+					GameManager.instance.boardModel.width + .5f 
+					: GameManager.instance.boardModel.height + .5f);
 			GameManager.instance.boardModel.Init();
 			GameManager.OnTileClicked += TriggerTileClick;
             GameManager.OnBackClicked += TriggerBackClick;
 			currentSubPhase = InGameSubPhases.player1_turn;
-			ReportCurrentPlayerTurn(0);
+			ReportCurrentPlayerTurn(0,false);
 		}
     }
     public override void UpdatePhase()
@@ -63,7 +63,7 @@ public class INGAME_GamePhaseBehavior : GamePhaseBehavior
 					GameManager.instance.TriggerPhaseTransition(GameManager.GamePhases.end);
 				}
 				currentSubPhase = InGameSubPhases.player2_turn;
-				ReportCurrentPlayerTurn(1);
+				ReportCurrentPlayerTurn(1,true);
 
             }
                 
@@ -84,18 +84,17 @@ public class INGAME_GamePhaseBehavior : GamePhaseBehavior
 					GameManager.instance.TriggerPhaseTransition(GameManager.GamePhases.end);
 				}
 				currentSubPhase = InGameSubPhases.player1_turn;
-				ReportCurrentPlayerTurn(0);
-
+				ReportCurrentPlayerTurn(0,true);
             }
             break;
 		}
 	}
-	void ReportCurrentPlayerTurn(int inputPlayerNumber)
+	void ReportCurrentPlayerTurn(int inputPlayerNumber, bool inputUseAnim)
 	{
 		if(phaseUI is INGAME_UIController)
 		{
 			INGAME_UIController phaseUI_cast = (INGAME_UIController) phaseUI;
-			phaseUI_cast.TriggerPlayerNumberImageUpdate(inputPlayerNumber);
+			phaseUI_cast.TriggerPlayerNumberImageUpdate(inputPlayerNumber, inputUseAnim);
 		}
 	}
 

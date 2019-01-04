@@ -6,6 +6,7 @@ public class END_UIController : UIController {
     
 	//public Image popUpBody_playerIMG;
 	public Image[] popUp_playerIMGs;
+	public Text popUp_playerName;
 	public GameObject popUp_container;
 	public GameObject popUp_Winner_container;
 	public GameObject popUp_Draw_container;
@@ -36,6 +37,8 @@ public class END_UIController : UIController {
 		{
 			Sprite winningPlayerSprite = GameManager.instance.boardViewer.playerSprites[ inputResults.winningPlayerNumber ];
 			foreach(Image playerIMG in popUp_playerIMGs) playerIMG.sprite = winningPlayerSprite;
+			if( inputResults.winningPlayerNumber == 0 ) popUp_playerName.text = PlayerPrefs.GetString( PlayerDataController.PlayerDataTypes.p1_name.ToString() );
+			else if( inputResults.winningPlayerNumber == 1 ) popUp_playerName.text = PlayerPrefs.GetString( PlayerDataController.PlayerDataTypes.p2_name.ToString() );
 			popUp_Winner_container.SetActive(true);
 		}
 		else 
