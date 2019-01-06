@@ -34,9 +34,8 @@ public class END_GamePhaseBehavior : GamePhaseBehavior
 				w.end,
 				0.6f
 			);
-			yield return new WaitForSeconds(1f);	
+			yield return new WaitForSeconds(1f);
 		}
-
 		yield return null;
 
 		if (GameManager.instance && phaseUI)

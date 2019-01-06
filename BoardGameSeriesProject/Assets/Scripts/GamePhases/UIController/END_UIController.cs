@@ -10,6 +10,7 @@ public class END_UIController : UIController {
 	public GameObject popUp_container;
 	public GameObject popUp_Winner_container;
 	public GameObject popUp_Draw_container;
+	public float popUpSpeed = 0.3f;
 
 	Coroutine _activeCoroutine;
 
