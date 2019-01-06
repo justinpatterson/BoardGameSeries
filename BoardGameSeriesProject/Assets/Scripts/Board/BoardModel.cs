@@ -16,7 +16,7 @@ public class BoardModel : MonoBehaviour {
 	protected WinVectorData _lastWinVectorData;
 
 
-	public delegate void BoardUpdateAction(Dictionary<Vector2, int> currentBoardSate, List<Vector2> boardTurnHistory);
+	public delegate void BoardUpdateAction(List<Vector2> boardState);
 	public static event BoardUpdateAction OnBoardUpdated;
 
     public virtual void Init()
@@ -67,7 +67,7 @@ public class BoardModel : MonoBehaviour {
                 _boardState[inputTargetPosition] = inputPlayerNumber;
 
 				if (OnBoardUpdated != null)
-					OnBoardUpdated(_boardState, _boardTurnHistory);
+					OnBoardUpdated(_boardTurnHistory);
 
                 return true;
             }

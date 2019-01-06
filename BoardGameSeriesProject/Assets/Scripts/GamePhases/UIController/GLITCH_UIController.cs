@@ -74,7 +74,7 @@ public class GLITCH_UIController : UIController
 	IEnumerator CloseMessage_PopUpMessageCoroutine() 
 	{
 		float startTime = Time.unscaledTime;
-		float targetDuration = 0.5f;
+		float targetDuration = 0.1f;
 		float percentage = 0f;
 		while( percentage < 1f )
 		{

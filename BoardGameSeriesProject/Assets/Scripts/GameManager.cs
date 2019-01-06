@@ -39,7 +39,10 @@ public class GameManager : MonoBehaviour {
     public static event BackClickAction OnBackClicked;
 
     public delegate void RestartClickAction();
-    public static event RestartClickAction OnRestartClicked;
+	public static event RestartClickAction OnRestartClicked;
+
+	public delegate void GameUpdateAction();
+	public static event BackClickAction OnGameUpdated;
 
     void Awake()
     {
@@ -65,6 +68,7 @@ public class GameManager : MonoBehaviour {
     void Update()
     {
         if (_currentPhaseBehavior) _currentPhaseBehavior.UpdatePhase();
+		if(OnGameUpdated!=null) OnGameUpdated();
     }
 
     public void TriggerPhaseTransition(GamePhases inputPhase)
@@ -81,7 +85,9 @@ public class GameManager : MonoBehaviour {
             {
                 gpb.StartPhase();
                 _currentPhaseBehavior = gpb;
-                if(sharedUIReference) sharedUIReference.SetSharedUIDisplay(_currentPhaseBehavior.sharedUI);
+				currentPhase = inputPhase;
+				if(sharedUIReference) sharedUIReference.SetSharedUIDisplay(_currentPhaseBehavior.sharedUI);
+				glitchController.QueueNextGlitchEventListener();
             }
         }
     }

@@ -7414,20 +7414,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   glitchEffectReference: {fileID: 1283281613}
   glitchUIReference: {fileID: 2021577829}
-  glitchEvent:
-    message: Please... anyone...
+  glitchEvents:
+  - message: '"help me..."'
     colorIntensity: 1
     flipIntensity: 1
     intensity: 1
+    eventTriggerGamePhase: 2
+    hasTriggered: 0
     targetTextureDisplacementMap: {fileID: 0}
     eventTriggerListener: 0
-    hasTriggered: 0
     boardPositionOrder:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
-    - {x: 1, y: 1}
-    - {x: 0, y: 1}
-    - {x: 2, y: 2}
+    targetElapsedTime: 0
+  - message: Will you be the one to free me?
+    colorIntensity: 1
+    flipIntensity: 1
+    intensity: 1
+    eventTriggerGamePhase: 1
+    hasTriggered: 0
+    targetTextureDisplacementMap: {fileID: 0}
+    eventTriggerListener: 2
+    boardPositionOrder: []
+    targetElapsedTime: 10
 --- !u!1 &2065568185
 GameObject:
   m_ObjectHideFlags: 0
