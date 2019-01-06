@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
     public GamePhaseBehavior[] gamePhaseBehaviors;
 	public AdController adController;
 	public PlayerDataController playerDataController;
+	public GlitchController glitchController;
 
 	public BoardInfo[] boards;
 	int _selectedBoard = 0;
@@ -88,6 +89,9 @@ public class GameManager : MonoBehaviour {
     public void ReportGameStartPressed()
     {
         TriggerPhaseTransition(GamePhases.inGame);
+		GlitchController.GlitchEvent glitchEventInstance = new GlitchController.GlitchEvent();
+		glitchEventInstance.message = "Is anyone out there?";
+		glitchController.TriggerGlitchEvent(  glitchEventInstance );
     }
 
 	public void ReportBoardOptionPressed(int inputOption)
