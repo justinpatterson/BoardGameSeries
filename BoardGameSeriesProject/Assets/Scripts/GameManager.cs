@@ -89,9 +89,6 @@ public class GameManager : MonoBehaviour {
     public void ReportGameStartPressed()
     {
         TriggerPhaseTransition(GamePhases.inGame);
-		GlitchController.GlitchEvent glitchEventInstance = new GlitchController.GlitchEvent();
-		glitchEventInstance.message = "Is anyone out there?";
-		glitchController.TriggerGlitchEvent(  glitchEventInstance );
     }
 
 	public void ReportBoardOptionPressed(int inputOption)

@@ -15,6 +15,10 @@ public class BoardModel : MonoBehaviour {
     protected Vector2 _lastPlayerPosition;
 	protected WinVectorData _lastWinVectorData;
 
+
+	public delegate void BoardUpdateAction(Dictionary<Vector2, int> currentBoardSate, List<Vector2> boardTurnHistory);
+	public static event BoardUpdateAction OnBoardUpdated;
+
     public virtual void Init()
     {
         _boardTurnHistory.Clear();
@@ -61,6 +65,10 @@ public class BoardModel : MonoBehaviour {
                 _lastPlayerPosition = inputTargetPosition;
                 if (inputPlayerNumber != -1) _boardTurnHistory.Add(inputTargetPosition);
                 _boardState[inputTargetPosition] = inputPlayerNumber;
+
+				if (OnBoardUpdated != null)
+					OnBoardUpdated(_boardState, _boardTurnHistory);
+
                 return true;
             }
             else

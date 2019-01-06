@@ -7414,6 +7414,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   glitchEffectReference: {fileID: 1283281613}
   glitchUIReference: {fileID: 2021577829}
+  glitchEvent:
+    message: Please... anyone...
+    colorIntensity: 1
+    flipIntensity: 1
+    intensity: 1
+    targetTextureDisplacementMap: {fileID: 0}
+    eventTriggerListener: 0
+    hasTriggered: 0
+    boardPositionOrder:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 1, y: 1}
+    - {x: 0, y: 1}
+    - {x: 2, y: 2}
 --- !u!1 &2065568185
 GameObject:
   m_ObjectHideFlags: 0
