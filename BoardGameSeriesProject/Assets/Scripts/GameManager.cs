@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;
-    public enum GamePhases { init, start, inGame, end, restart }
+    public enum GamePhases { init, start, inGame, end, restart, settings }
     public GamePhases currentPhase = GamePhases.init;
     public GamePhaseBehavior[] gamePhaseBehaviors;
 	public AdController adController;
@@ -96,6 +96,11 @@ public class GameManager : MonoBehaviour {
     {
         TriggerPhaseTransition(GamePhases.inGame);
     }
+
+	public void ReportGameSettingsOptionPressed()
+	{
+		TriggerPhaseTransition(GamePhases.settings);
+	}
 
 	public void ReportBoardOptionPressed(int inputOption)
 	{
