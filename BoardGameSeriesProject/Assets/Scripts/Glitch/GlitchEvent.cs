@@ -31,6 +31,7 @@ public class GlitchEvent
 
 	public void StartGlitchEventListener()
 	{
+		Debug.Log("GE Listener Subscribing to Delegates.");
 		switch(eventTriggerListener)
 		{
 		case EventTriggerType.boardOrder:
@@ -38,7 +39,6 @@ public class GlitchEvent
 			{
 				BoardModel.OnBoardUpdated += DoEventCheck_BoardState;
 				GameManager.OnBackClicked += EndEventListener;
-				Debug.Log("Glitch Event listener active...");
 			}
 			break;
 		case EventTriggerType.elapsedTimeInMode:
@@ -120,7 +120,7 @@ public class GlitchEvent
 	}
 	public void EndEventListener()
 	{
-		Debug.Log("Glitch listener inactive.");
+		Debug.Log("GE Listener Unsubscribing from Delegates.");
 		GameManager.OnBackClicked -= EndEventListener;
 		if(eventTriggerListener == EventTriggerType.boardOrder || eventTriggerListener == EventTriggerType.boardConfiguration) 
 			BoardModel.OnBoardUpdated -= DoEventCheck_BoardState;
