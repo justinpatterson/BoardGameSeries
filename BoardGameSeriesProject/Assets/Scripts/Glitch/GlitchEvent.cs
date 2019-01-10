@@ -6,6 +6,7 @@ using UnityEngine;
 public class GlitchEvent
 {
 	[Header("Event Effect Values")]
+	public string playerPrefKey = "prefKey";
 	public string message;
 	public float colorIntensity = 1f;
 	public float flipIntensity = 1f;

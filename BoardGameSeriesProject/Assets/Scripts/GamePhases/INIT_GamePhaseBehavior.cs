@@ -8,7 +8,7 @@ public class INIT_GamePhaseBehavior : GamePhaseBehavior {
     {
         base.StartPhase();
 		PlayerPrefs.SetInt( "GridSize", 3);
-
+		GameManager.instance.glitchController.Init();
     }
 
     public override void UpdatePhase()

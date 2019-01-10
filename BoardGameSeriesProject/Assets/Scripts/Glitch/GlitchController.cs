@@ -10,6 +10,16 @@ public class GlitchController : MonoBehaviour
 	public GlitchEvent[] glitchEvents;
 	int _currentGlitchEventIndex = -1;
 
+	public void Init()
+	{
+		foreach(GlitchEvent g in glitchEvents)
+		{
+			int glitchStatus = PlayerPrefs.GetInt( g.playerPrefKey, 0);
+			if(glitchStatus == 1) g.hasTriggered = true;
+		}
+	}
+
+
 	public void QueueNextGlitchEventListener()
 	{
 
@@ -41,6 +51,7 @@ public class GlitchController : MonoBehaviour
 	public void TriggerGlitchEvent(GlitchEvent inputEvent)
 	{
 		_currentGlitchEventIndex = -1;
+		PlayerPrefs.SetInt( inputEvent.playerPrefKey, 1 );
 		StartCoroutine( GlitchEventCoroutine( inputEvent ) );
 	}
 
