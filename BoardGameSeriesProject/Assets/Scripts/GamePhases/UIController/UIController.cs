@@ -7,6 +7,8 @@ public class UIController : MonoBehaviour {
     public bool uiActive = false;
     public GameObject uiContainer;
 
+
+
     void Awake() { if (!uiContainer) uiContainer = this.gameObject; }
     public virtual void OpenUI()
     {
@@ -18,4 +20,5 @@ public class UIController : MonoBehaviour {
         uiContainer.SetActive(false);
         uiActive = false;
     }
+
 }

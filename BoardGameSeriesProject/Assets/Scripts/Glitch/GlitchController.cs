@@ -10,8 +10,11 @@ public class GlitchController : MonoBehaviour
 	public GlitchEvent[] glitchEvents;
 	int _currentGlitchEventIndex = -1;
 
+	bool _forceGlitches = true;
+
 	public void Init()
 	{
+		if(_forceGlitches) return;
 		foreach(GlitchEvent g in glitchEvents)
 		{
 			int glitchStatus = PlayerPrefs.GetInt( g.playerPrefKey, 0);

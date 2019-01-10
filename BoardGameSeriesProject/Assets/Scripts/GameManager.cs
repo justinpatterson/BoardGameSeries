@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour {
                 _currentPhaseBehavior = gpb;
 				currentPhase = inputPhase;
 				if(sharedUIReference) sharedUIReference.SetSharedUIDisplay(_currentPhaseBehavior.sharedUI);
-				glitchController.QueueNextGlitchEventListener();
+				if(PlayerPrefs.GetFloat(GameDataModel.GameSettings.firewall.ToString(), 1f) == 0f) glitchController.QueueNextGlitchEventListener();
             }
         }
     }
@@ -144,4 +144,9 @@ public class GameManager : MonoBehaviour {
             OnRestartClicked();
     }
     #endregion
+}
+
+public class GameDataModel
+{
+	public enum GameSettings { volume, sound, firewall } 
 }
