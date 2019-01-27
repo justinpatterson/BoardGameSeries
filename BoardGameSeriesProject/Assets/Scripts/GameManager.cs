@@ -107,7 +107,12 @@ public class GameManager : MonoBehaviour {
 		_selectedBoard = Mathf.Clamp(inputOption, 0, boards.Length);
 
 	}
-    
+	public void ReportClearGameData()
+	{
+		Handheld.Vibrate();
+		PlayerPrefs.DeleteAll();
+		glitchController.Init();
+	}
 
 
     public void TriggerResultsGeneration(int inputWinningPlayerNumber)
@@ -149,4 +154,25 @@ public class GameManager : MonoBehaviour {
 public class GameDataModel
 {
 	public enum GameSettings { volume, sound, firewall } 
+	public enum PlayerValues { name, score }
+
+
+	public void SetGameSettingValue ( GameSettings dataType, float value)
+	{
+		PlayerPrefs.SetFloat( dataType.ToString(), value );
+	}
+
+	public void UpdatePlayerName(int inputPlayerIndex, string inputName)
+	{
+		string playerKey = PlayerValues.name + "_" + inputPlayerIndex.ToString("00");
+		PlayerPrefs.SetString( playerKey, inputName);
+	}
+
+	public string GetPlayerName(int inputPlayerIndex)
+	{
+		string playerKey = PlayerValues.name + "_" + inputPlayerIndex.ToString("00");
+		string defaultName = "P"+inputPlayerIndex.ToString("00");
+		return PlayerPrefs.GetString( playerKey, defaultName );
+	}
+
 }

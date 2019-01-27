@@ -10,7 +10,7 @@ public class GlitchController : MonoBehaviour
 	public GlitchEvent[] glitchEvents;
 	int _currentGlitchEventIndex = -1;
 
-	bool _forceGlitches = true;
+	bool _forceGlitches = false;
 
 	public void Init()
 	{
@@ -19,6 +19,7 @@ public class GlitchController : MonoBehaviour
 		{
 			int glitchStatus = PlayerPrefs.GetInt( g.playerPrefKey, 0);
 			if(glitchStatus == 1) g.hasTriggered = true;
+			else g.hasTriggered = false;
 		}
 	}
 
